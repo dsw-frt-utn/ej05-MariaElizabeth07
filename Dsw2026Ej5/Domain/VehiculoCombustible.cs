@@ -28,6 +28,16 @@ public class VehiculoCombustible: Vehiculo
 
     public override double CalcularConsumo(double kilometros)
     {
-        return kilometros * kilometrosPorLitro;
+        double litrosBase = kilometros / this.kilometrosPorLitro;
+
+        int antiguedad = 2026 - this.GetAnio();
+
+        if (antiguedad > 5)
+        { 
+            double adicional = (kilometros / 15) * this.litrosExtra;
+            return litrosBase + adicional;
+        }
+
+        return litrosBase;
     }
 }
